@@ -23,7 +23,3 @@ export NVM_DIR="$HOME/.nvm"
 PS1='[\u@\h \W]\$ '
 
 alias vim=nvim
-#fastfetch
-. "$HOME/.cargo/env"
-
-. "$HOME/.local/bin/env"

@@ -69,6 +69,21 @@ copy_config_file() {
     success "Copied $src_rel -> ~/.config/$dest_rel"
 }
 
+copy_config_dir_abs() {
+    local src_rel="$1"
+    local dest="$2"
+    local src="$DOTFILES_DIR/.config/$src_rel"
+
+    if [[ ! -d "$src" ]]; then
+        warn "Missing source file: $src"
+        return
+    fi
+
+    mkdir -p "$(dirname "$dest")"
+    cp -a "$src" "$dest"
+    success "Copied $src_rel -> $dest"
+}
+
 apply_default_pywal() {
     local wallpaper="$DOTFILES_DIR/wallpapers/pywallpaper.jpg"
 
