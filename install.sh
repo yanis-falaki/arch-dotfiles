@@ -1,5 +1,3 @@
-# Testing
-
 #################### YAY (AUR Helper)
 echo "Installing prebuilt yay AUR helper..."
 
