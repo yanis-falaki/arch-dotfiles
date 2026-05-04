@@ -28,7 +28,7 @@ EOF
 echo -e "${RESET}"
 
 # ── Sanity checks ─────────────────────────────────────────────────────────────
-DOTFILES_DIR="$HOME/Dotfiles"
+DOTFILES_DIR="$HOME/arch-dotfiles"
 
 if [ ! -d "$DOTFILES_DIR" ]; then
     error "Dotfiles directory not found at $DOTFILES_DIR. Aborting."

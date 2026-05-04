@@ -11,7 +11,7 @@ warn()    { echo -e "${YELLOW}${BOLD}[!]${RESET} $*"; }
 error()   { echo -e "${RED}${BOLD}[✗]${RESET} $*" >&2; }
 section() { echo -e "\n${BOLD}${CYAN}══ $* ══${RESET}\n"; }
 
-DOTFILES_DIR="${HOME}/Dotfiles"
+DOTFILES_DIR="${HOME}/arch-dotfiles"
 CONFIG_DIR="${HOME}/.config"
 
 ensure_prereqs() {
