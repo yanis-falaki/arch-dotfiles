@@ -1,8 +1,3 @@
-#################### Git
-echo "Installing git..."
-sudo pacman -S git
-####################
-
 #################### YAY (AUR Helper)
 echo "Installing prebuilt yay AUR helper..."
 
