@@ -15,3 +15,7 @@ vim.cmd("set number")
 require("vim-options")
 vim.opt.termguicolors = true
 require("lazy").setup("plugins")
+
+if vim.env.CODEX_SHELL == "1" then
+    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+end
