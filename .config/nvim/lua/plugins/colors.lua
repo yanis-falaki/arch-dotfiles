@@ -14,10 +14,10 @@ return {
     "AlphaTechnolog/pywal.nvim",
     lazy = false,
     priority = 1000,
+    enabled = vim.env.CODEX_SHELL ~= "1",
     config = function()
         -- Set up pywal and load the colors
         require("pywal").setup()
 
     end,
 }
-

@@ -1,7 +1,9 @@
 # ~/.bashrc
-#clear && myfetch -c 8 -C " █"
-wal -Rq
-#eval "$(starship init bash)"
+
+if [[ $TERM == "xterm-kitty" && -r ~/.cache/wal/sequences ]]; then
+  cat ~/.cache/wal/sequences > /dev/tty
+fi
+
 [[ $- != *i* ]] && return
 alias lsd='eza --icons'
 alias pacup='sudo pacman -Rns $(pacman -Qdtq)'
@@ -23,3 +25,7 @@ export NVM_DIR="$HOME/.nvm"
 PS1='[\u@\h \W]\$ '
 
 alias vim=nvim
+#fastfetch
+. "$HOME/.cargo/env"
+
+. "$HOME/.local/bin/env"
