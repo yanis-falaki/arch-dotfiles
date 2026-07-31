@@ -57,6 +57,11 @@ apply_dotfiles() {
     info "Copying .config files..."
     cp -a "$DOTFILES_DIR/.config/." "$HOME/.config/"
 
+    info "Copying local application launchers..."
+    mkdir -p "$HOME/.local/share/applications"
+    cp -a "$DOTFILES_DIR/.local/share/applications/." "$HOME/.local/share/applications/"
+    update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
+
     info "Copying .bashrc..."
     cp -a "$DOTFILES_DIR/.bashrc" "$HOME/"
 

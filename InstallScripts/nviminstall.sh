@@ -9,6 +9,7 @@ ensure_prereqs
 
 install_packages neovim
 copy_config_dir "nvim" "nvim"
+copy_local_share_file "applications/nvim.desktop"
 
 read -rp "Install optional Neovim extras (lazygit + pywal)? (Y/n): " extras
 if [[ "${extras:-y}" =~ ^[Yy]$ ]]; then

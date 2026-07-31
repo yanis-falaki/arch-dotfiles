@@ -13,6 +13,7 @@ section() { echo -e "\n${BOLD}${CYAN}══ $* ══${RESET}\n"; }
 
 DOTFILES_DIR="${HOME}/arch-dotfiles"
 CONFIG_DIR="${HOME}/.config"
+LOCAL_SHARE_DIR="${HOME}/.local/share"
 
 ensure_prereqs() {
     if [ ! -d "$DOTFILES_DIR" ]; then
@@ -67,6 +68,21 @@ copy_config_file() {
     mkdir -p "$(dirname "$dest")"
     cp -a "$src" "$dest"
     success "Copied $src_rel -> ~/.config/$dest_rel"
+}
+
+copy_local_share_file() {
+    local src_rel="$1"
+    local src="$DOTFILES_DIR/.local/share/$src_rel"
+    local dest="$LOCAL_SHARE_DIR/$src_rel"
+
+    if [ ! -f "$src" ]; then
+        warn "Missing source file: $src"
+        return
+    fi
+
+    mkdir -p "$(dirname "$dest")"
+    cp -a "$src" "$dest"
+    success "Copied .local/share/$src_rel"
 }
 
 copy_config_dir_abs() {
