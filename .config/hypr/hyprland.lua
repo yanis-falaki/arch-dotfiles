@@ -19,27 +19,22 @@ end
 local active_border = wal.color9 or "rgb(543FB8)"
 local inactive_border = wal.color5 or "rgb(852191)"
 
--- Safe fallback for machines whose output names differ from this desktop.
-hl.monitor({
-    output = "",
-    mode = "preferred",
-    position = "auto",
-    scale = "auto",
-})
+local profile = "laptop"
+local profile_file = io.open(home .. "/.config/hypr/profile", "r")
+if profile_file then
+    profile = profile_file:read("*l") or profile
+    profile_file:close()
+end
 
-hl.monitor({
-    output = "DP-1",
-    mode = "1920x1080@60.00",
-    position = "1920x100",
-    scale = 1.0,
-})
+-- A 1x fallback keeps unfamiliar displays usable; named rules define each host.
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.0 })
 
-hl.monitor({
-    output = "DP-3",
-    mode = "1920x1080@75.00",
-    position = "0x0",
-    scale = 1.0,
-})
+if profile == "desktop" then
+    hl.monitor({ output = "DP-1", mode = "1920x1080@60.00", position = "1920x100", scale = 1.0 })
+    hl.monitor({ output = "DP-3", mode = "1920x1080@75.00", position = "0x0", scale = 1.0 })
+else
+    hl.monitor({ output = "eDP-1", mode = "1920x1080@144.00", position = "0x0", scale = 1.0 })
+end
 
 local terminal = "kitty"
 local file_manager = "thunar"
@@ -162,6 +157,7 @@ hl.bind(main_mod .. " + E", hl.dsp.exec_cmd(file_manager))
 hl.bind(main_mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(main_mod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(main_mod .. " + P", hl.dsp.window.pseudo())
+hl.bind(main_mod .. " + SHIFT + P", hl.dsp.exec_cmd(home .. "/.config/hypr/hypr-profile toggle"))
 hl.bind(main_mod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(main_mod .. " + F", hl.dsp.window.fullscreen_state({ internal = 2, client = 0 }))
 hl.bind(main_mod .. " + B", hl.dsp.exec_cmd(browser))
@@ -173,8 +169,10 @@ hl.bind(main_mod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 for i = 1, 10 do
     local key = i % 10
-    local monitor = i % 2 == 0 and "DP-1" or "DP-3"
-    hl.workspace_rule({ workspace = tostring(i), monitor = monitor })
+    if profile == "desktop" then
+        local monitor = i % 2 == 0 and "DP-1" or "DP-3"
+        hl.workspace_rule({ workspace = tostring(i), monitor = monitor })
+    end
     hl.bind(main_mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
     hl.bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end

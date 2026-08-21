@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -euo pipefail
+
+config_dir="${HOME}/.config/hypr"
+profiles_dir="${config_dir}/profiles"
+profile_file="${config_dir}/profile"
+active_link="${config_dir}/monitor-profile.conf"
+requested_profile="${1:-toggle}"
+
+current_profile="laptop"
+if [ -r "$profile_file" ]; then
+    current_profile="$(<"$profile_file")"
+fi
+
+case "$requested_profile" in
+    toggle)
+        if [ "$current_profile" = "desktop" ]; then
+            requested_profile="laptop"
+        else
+            requested_profile="desktop"
+        fi
+        ;;
+    laptop|desktop)
+        ;;
+    *)
+        echo "Usage: ${0##*/} [laptop|desktop|toggle]" >&2
+        exit 2
+        ;;
+esac
+
+profile_config="${profiles_dir}/${requested_profile}.conf"
+if [ ! -f "$profile_config" ]; then
+    echo "Profile not found: $profile_config" >&2
+    exit 1
+fi
+
+ln -sfn "profiles/${requested_profile}.conf" "$active_link"
+printf '%s\n' "$requested_profile" > "$profile_file"
+hyprctl reload
