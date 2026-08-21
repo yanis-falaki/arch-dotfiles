@@ -1,10 +1,9 @@
 # ~/.bashrc
-
 if [[ $TERM == "xterm-kitty" && -r ~/.cache/wal/sequences ]]; then
   cat ~/.cache/wal/sequences > /dev/tty
 fi
-
 [[ $- != *i* ]] && return
+
 alias lsd='eza --icons'
 alias pacup='sudo pacman -Rns $(pacman -Qdtq)'
 alias grep='grep --color=auto'
@@ -29,3 +28,4 @@ alias vim=nvim
 . "$HOME/.cargo/env"
 
 . "$HOME/.local/bin/env"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

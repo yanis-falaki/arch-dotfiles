@@ -142,7 +142,8 @@ finish() {
 
 # ── Core packages ─────────────────────────────────────────────────────────────
 CORE_PACKAGES=(
-    python-pywal16 swww waybar swaync starship myfetch neovim python-pywalfox
+    python-pywal16 awww waybar swaync starship myfetch neovim python-pywalfox kwallet
+    kitty wofi jq playerctl
     hypridle hyprpicker hyprshot hyprlock hyprmon pacman-contrib pyprland wlogout fd
     cava brightnessctl clock-rs-git nerd-fonts nwg-look qogir-icon-theme
     materia-gtk-theme illogical-impulse-bibata-modern-classic-bin
