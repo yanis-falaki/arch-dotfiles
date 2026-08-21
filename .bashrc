@@ -1,8 +1,10 @@
 # ~/.bashrc
-#clear && myfetch -c 8 -C " █"
-wal -Rq
-#eval "$(starship init bash)"
 [[ $- != *i* ]] && return
+
+if [[ $TERM == xterm-kitty && -r "$HOME/.cache/wal/sequences" ]]; then
+    cat "$HOME/.cache/wal/sequences"
+fi
+
 alias lsd='eza --icons'
 alias pacup='sudo pacman -Rns $(pacman -Qdtq)'
 alias grep='grep --color=auto'
@@ -23,3 +25,4 @@ export NVM_DIR="$HOME/.nvm"
 PS1='[\u@\h \W]\$ '
 
 alias vim=nvim
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
