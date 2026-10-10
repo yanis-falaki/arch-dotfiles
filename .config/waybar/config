@@ -4,7 +4,33 @@
         "reload_style_on_change": true,
         "modules-left": ["custom/notification","clock","custom/pacman","tray"],
         "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["group/expand","bluetooth","network","battery"],
+        "modules-right": ["group/expand","pulseaudio","pulseaudio/slider","pulseaudio#microphone","bluetooth","network","battery"],
+
+        "pulseaudio": {
+            "format": "Vol {volume}%",
+            "format-muted": "Vol muted",
+            "scroll-step": 5,
+            "max-volume": 100,
+            "tooltip-format": "{desc}\nClick: audio settings\nScroll: volume\nRight-click: mute",
+            "on-click": "pavucontrol --tab=3",
+            "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        },
+        "pulseaudio/slider": {
+            "min": 0,
+            "max": 100,
+            "orientation": "horizontal"
+        },
+        "pulseaudio#microphone": {
+            "format": "{format_source}",
+            "format-muted": "{format_source}",
+            "format-source": "Mic {volume}%",
+            "format-source-muted": "Mic muted",
+            "tooltip-format": "Microphone\nClick: input settings\nScroll: microphone level\nRight-click: mute microphone",
+            "on-click": "pavucontrol --tab=4",
+            "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+            "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%+",
+            "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
+        },
 
 
         "hyprland/workspaces": {

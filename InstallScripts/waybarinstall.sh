@@ -7,7 +7,7 @@ source "$SCRIPT_DIR/common.sh"
 section "Waybar Installer"
 ensure_prereqs
 
-install_packages waybar hyprpicker python-pywal16
+install_packages waybar hyprpicker python-pywal16 pavucontrol libnotify wireplumber
 copy_config_dir "waybar" "waybar"
 apply_default_pywal
 

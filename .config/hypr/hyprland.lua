@@ -179,10 +179,16 @@ end
 
 local osd = [[swayosd-client --monitor "$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')"]]
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(osd .. " --output-volume raise"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(osd .. " --output-volume lower"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(osd .. " --output-volume mute-toggle"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(osd .. " --input-volume mute-toggle"), { locked = true })
+local audio_control = "bash " .. home .. "/.config/hypr/audio-control.sh "
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(audio_control .. "up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(audio_control .. "down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(audio_control .. "mute"), { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(audio_control .. "mic-mute"), { locked = true })
+-- Ordinary keyboard alternatives, with no Fn key required.
+hl.bind(main_mod .. " + equal", hl.dsp.exec_cmd(audio_control .. "up"), { repeating = true })
+hl.bind(main_mod .. " + minus", hl.dsp.exec_cmd(audio_control .. "down"), { repeating = true })
+hl.bind(main_mod .. " + SHIFT + M", hl.dsp.exec_cmd(audio_control .. "mic-mute"))
+hl.bind(main_mod .. " + A", hl.dsp.exec_cmd("pavucontrol"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(osd .. " --brightness +10"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(osd .. " --brightness -10"), { locked = true, repeating = true })
 
@@ -246,4 +252,13 @@ hl.window_rule({
     float = true,
     pin = true,
     move = { 1232, 51 },
+})
+
+hl.window_rule({
+    name = "audio-settings",
+    match = { class = "^(org.pulseaudio.pavucontrol|Pavucontrol|pavucontrol)$" },
+    float = true,
+    size = { 900, 650 },
+    center = true,
+    opacity = 1.0,
 })

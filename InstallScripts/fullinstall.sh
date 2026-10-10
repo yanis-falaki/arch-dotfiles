@@ -125,7 +125,7 @@ setup_bluetooth() {
 
 setup_pipewire() {
     section "Pipewire & Audio"
-    yay -S --needed pipewire pipewire-pulse pipewire-alsa pipewire-jack \
+    yay -S --needed pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
         pavucontrol pulsemixer gnome-network-displays gst-plugins-bad
     systemctl --user enable --now pipewire.service
     systemctl --user enable --now pipewire-pulse.service
@@ -143,7 +143,7 @@ finish() {
 # ── Core packages ─────────────────────────────────────────────────────────────
 CORE_PACKAGES=(
     python-pywal16 awww waybar swaync starship myfetch neovim python-pywalfox kwallet
-    kitty wofi jq playerctl
+    kitty wofi jq playerctl libnotify pavucontrol wireplumber
     hypridle hyprpicker hyprshot hyprlock hyprmon pacman-contrib pyprland wlogout fd
     cava brightnessctl clock-rs-git nerd-fonts nwg-look qogir-icon-theme
     materia-gtk-theme illogical-impulse-bibata-modern-classic-bin
@@ -151,7 +151,7 @@ CORE_PACKAGES=(
     discord visual-studio-code-bin
 )
 
-OPTIONAL_PACKAGES=(blueman bluez pipewire pipewire-pulse pipewire-alsa
+OPTIONAL_PACKAGES=(blueman bluez pipewire pipewire-pulse pipewire-alsa wireplumber
     pipewire-jack pavucontrol pulsemixer gnome-network-displays gst-plugins-bad)
 
 # ── Installation modes ────────────────────────────────────────────────────────

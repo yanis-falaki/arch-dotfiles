@@ -32,6 +32,36 @@ tooltip {
     background:@background;
     color: @color7;
 }
+#pulseaudio {
+    padding: 0px 8px;
+    color: @color7;
+}
+#pulseaudio:hover {
+    color: @color9;
+}
+#pulseaudio.muted, #pulseaudio.source-muted {
+    color: #ffbe61;
+}
+#pulseaudio-slider {
+    min-width: 80px;
+    margin: 0px 6px;
+}
+#pulseaudio-slider trough {
+    min-height: 5px;
+    border-radius: 5px;
+    background: alpha(@color7, .25);
+}
+#pulseaudio-slider highlight {
+    min-height: 5px;
+    border-radius: 5px;
+    background: @color9;
+}
+#pulseaudio-slider slider {
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 50%;
+    background: @color7;
+}
 #clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
     transition: all .3s ease;
     color:@color9;
