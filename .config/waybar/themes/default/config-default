@@ -71,7 +71,7 @@
             "tooltip-format-disconnected": "Error",
             "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
             "tooltip-format-ethernet": "{ifname} 🖧 ",
-            "on-click": "kitty iwgtk"
+            "on-click": "iwgtk"
         },
         "bluetooth": {
             "format-on": "󰂯",
