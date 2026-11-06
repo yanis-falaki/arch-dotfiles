@@ -27,3 +27,11 @@ If no microphone appears, open the mixer's **Configuration** tab and select an
 input-capable profile such as **Analog Stereo Duplex**. Then select the correct
 port and default input under **Input Devices**. Hardware-specific device names
 and microphone ports are configured on each machine rather than hardcoded here.
+
+## Displays
+
+Monitor layout is managed by hyprdisplays (a separate project), which writes
+`~/.config/hypr/monitors.lua` for each set of connected monitors.
+`hyprland.lua` loads that file and starts `hyprdisplays.service` at login.
+Without hyprdisplays, every monitor falls back to its preferred mode with
+automatic placement.
