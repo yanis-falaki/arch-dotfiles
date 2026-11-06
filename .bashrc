@@ -25,7 +25,7 @@ PS1='[\u@\h \W]\$ '
 
 alias vim=nvim
 #fastfetch
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
